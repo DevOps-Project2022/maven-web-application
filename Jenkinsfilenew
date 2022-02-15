@@ -1,0 +1,32 @@
+node{
+    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')),
+    pipelineTriggers([pollSCM('* * * * *')])])
+    
+    
+    
+def mavenHome = tool name: 'maven-3.8.4'
+
+stage('getting code from SCM'){
+
+git credentialsId: '45efbb5f-4adf-4349-b54e-69752cfbeb0e', url: 'https://github.com/DevOps-Project2022/maven-web-application.git'
+
+}
+stage('bild the package'){
+
+sh "${mavenHome}/bin/mvn clean package"
+
+}
+
+stage('Generate sonar report'){
+
+sh "${mavenHome}/bin/mvn sonar:sonar"
+
+}
+
+stage('deploy into tomact'){
+sshagent(['0b5b76d9-1b72-4200-955d-e88f47056b27']) {
+    
+sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/java-scripted-pipeline/target/maven-web-application.war ec2-user@3.143.209.178:/opt/apache-tomcat-9.0.58/webapps"
+}
+}
+}
