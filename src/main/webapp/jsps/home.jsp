@@ -9,7 +9,7 @@
 </head>
 </head>
 <body>
-<h1 align="center">Welcome to Mithun Software Solutions. Bengaluru,Karnataka </h1>
+<h1 align="center">Welcome to Bengaluru,Karnataka </h1>
 <h1 align="center">I am venky.Feature DevOps engineer</h1>
 <hr>
 <br>
