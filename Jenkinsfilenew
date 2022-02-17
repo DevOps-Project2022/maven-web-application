@@ -17,7 +17,7 @@ sh "${mavenHome}/bin/mvn clean package"
 
 }
 
-stage('Generate sonar report'){
+/*stage('Generate sonar report'){
 
 sh "${mavenHome}/bin/mvn sonar:sonar"
 
@@ -28,5 +28,5 @@ sshagent(['0b5b76d9-1b72-4200-955d-e88f47056b27']) {
     
 sh "scp -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/java-scripted-pipeline/target/maven-web-application.war ec2-user@18.220.70.221:/opt/apache-tomcat-9.0.58/webapps"
 }
-}
+}*/
 }
